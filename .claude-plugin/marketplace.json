@@ -1,8 +1,8 @@
 {
-  "name": "nick-gamedev",
-  "description": "Personal game-dev harness: design journal, lessons learned, project scaffolding",
+  "name": "nicholaslennox",
+  "description": "Nicholas Lennox's personal Claude plugins",
   "owner": {
-    "name": "Nick"
+    "name": "Nicholas Lennox"
   },
   "plugins": [
     {

@@ -20,7 +20,7 @@ Claude picks the right skill from what you say. To force one, type `/gamedev-har
 | Where you add it | Available in |
 |---|---|
 | **claude.ai → Customize → Plugins → Add → Add marketplace → `NicholasLennox/gamedev-harness`** (recommended) | Your **account**: web, desktop and mobile chat, plus Claude Code when signed in |
-| `claude plugin marketplace add NicholasLennox/gamedev-harness` then `claude plugin install gamedev-harness@nick-gamedev` | Claude Code on **that one machine** only |
+| `claude plugin marketplace add NicholasLennox/gamedev-harness` then `claude plugin install gamedev-harness@nicholaslennox` | Claude Code on **that one machine** only |
 | `claude --plugin-dir ./plugins/gamedev-harness` | One Claude Code session (for editing the plugin) |
 
 Chat on web and mobile can't write files, so there the journal skill gives you the note to save instead.

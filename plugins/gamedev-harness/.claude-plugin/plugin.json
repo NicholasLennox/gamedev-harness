@@ -1,8 +1,13 @@
 {
   "name": "gamedev-harness",
+  "displayName": "Game Dev Harness",
   "description": "Journal design ideas and dev lessons; scaffold new game projects",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
-    "name": "Nick"
-  }
+    "name": "Nicholas Lennox",
+    "url": "https://github.com/NicholasLennox"
+  },
+  "homepage": "https://github.com/NicholasLennox/gamedev-harness#readme",
+  "repository": "https://github.com/NicholasLennox/gamedev-harness",
+  "keywords": ["gamedev", "game-design", "journal", "unity", "scaffolding"]
 }
