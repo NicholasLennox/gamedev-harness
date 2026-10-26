@@ -4,5 +4,11 @@
 - Design pillars in `README.md` break ties. Flag ideas that conflict with them.
 - Record decisions in `docs/decisions.md` with the *why*.
 - When the user shares a design idea or something they learned, use the `journal` skill (notes go in `journal/`).
-- YAGNI: don't build generic tools or pipelines until they've been needed more than once.
+## Coding principles
+
+- **KISS:** pick the most straightforward, clearest way to do it. Readable beats clever.
+- **YAGNI:** don't build generic tools, pipelines or abstractions until they're actually needed.
+- **DRY, loosely:** remove obvious duplication, but don't abstract early. Two similar copies are fine. Extract on the third, and only if it makes the code simpler. When DRY and KISS conflict, KISS wins.
+
+## Working notes
 - Verify claims about other games and tools before writing them into docs.
