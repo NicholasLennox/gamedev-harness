@@ -30,7 +30,7 @@ Whatever comes back is usually dictated and rambling. Distil it; don't transcrib
 
 Copy each file from [templates/](templates/) to the same relative path in the project, filling in the placeholders from what the user said. Suggest 2–3 pillars from what you heard. Leave clear `TODO`s where something is unknown:
 
-- `README.md`, `CLAUDE.md`
+- `README.md`, `CLAUDE.md`, `CHANGELOG.md`
 - `docs/vision.md`, `docs/roadmap.md`, `docs/decisions.md`, `docs/design-log.md`
 - `journal/.gitkeep`
 - `src/README.md` (empty placeholder for the code or engine project)

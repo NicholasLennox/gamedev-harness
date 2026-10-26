@@ -30,4 +30,7 @@ jobs:
           fi
           zip_name="gamedev-harness-$version.zip"
           (cd plugins/gamedev-harness && zip -r "$GITHUB_WORKSPACE/$zip_name" .)
-          gh release create "v$version" "$zip_name" --title "gamedev-harness $version" --generate-notes
+          # Notes: this version's section of CHANGELOG.md, else GitHub's generated notes.
+          awk -v h="## [$version]" 'index($0, h) == 1 {f = 1; next} /^## \[/ {f = 0} f' CHANGELOG.md > notes.md
+          if [ -s notes.md ]; then notes=(--notes-file notes.md); else notes=(--generate-notes); fi
+          gh release create "v$version" "$zip_name" --title "gamedev-harness $version" "${notes[@]}"

@@ -18,5 +18,6 @@
 | [docs/roadmap.md](docs/roadmap.md) | Milestones, each one playable |
 | [docs/decisions.md](docs/decisions.md) | Decision log and open questions |
 | [docs/design-log.md](docs/design-log.md) | Append-only history of design iterations (for agents) |
+| [CHANGELOG.md](CHANGELOG.md) | Patch notes, newest first |
 | [journal/](journal/) | Design ideas and dev lessons ("journal this…") |
 | [src/](src/) | The code / engine project (engine not chosen yet) |

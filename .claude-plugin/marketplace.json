@@ -8,7 +8,7 @@
     {
       "name": "gamedev-harness",
       "source": "./plugins/gamedev-harness",
-      "description": "Journal design ideas and dev lessons, iterate on designs, scaffold new game projects"
+      "description": "Scaffold game projects, journal ideas, iterate designs, file features, keep patch notes"
     }
   ]
 }
