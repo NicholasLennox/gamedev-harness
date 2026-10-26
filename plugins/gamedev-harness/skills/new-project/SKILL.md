@@ -1,66 +1,44 @@
 ---
 name: new-project
-description: Start a new game project by interviewing the user about their game, then setting up design docs (README with pillars, vision, roadmap, decision log), a journal folder, CLAUDE.md, and the engine project folder (Unity by default). Use when the user wants to create, start, or set up a new game / game dev project, even if they describe it in a long spoken ramble.
-argument-hint: "[name and/or a spoken brain dump of the idea]"
+description: Start a new game project. Asks the user to describe their game, then sets up design docs (README with pillars, vision, roadmap, decision log), a journal folder, CLAUDE.md, and an empty src/ folder for the code. Use when the user wants to create, start, or set up a new game / game dev project, even if they describe it in a long spoken ramble.
+argument-hint: "[working name and a brain dump of the idea]"
 ---
 
 # New game project
 
 Set up a new game project from: $ARGUMENTS
 
-## 1. Interview first, build later
+This skill only gets the ideas down. **Don't pick an engine, create engine projects, or write game code.** The user sets those up later.
 
-**Don't create any files until the interview is done.** Start by talking to the user about their game, like a curious design partner would. Their answers are usually dictated and rambling, so let them ramble. You'll distil it later.
+## 1. Ask once
 
-- If `$ARGUMENTS` is empty, open warmly and ask them to tell you about the game, any way they like.
-- If it already holds a brain dump, play back the gist in a line or two, then pick up the most interesting gap.
-- Ask **one or two open questions per turn** in plain text. Build on what they just said instead of working down a checklist. Don't use multiple-choice menus for creative questions.
-- Feel free to suggest things ("sounds like Hades meets Stardew. Is the farming the main thing or the break between runs?"), but the ideas stay theirs.
+If `$ARGUMENTS` is empty, do nothing else first: no file listing, no searching, no setup. Reply with just this and wait:
 
-Over the conversation, cover:
+> Tell me about your game. Give it a working name (a placeholder is fine), then describe it as much as you like: what the player does, the games and mechanics that inspired it, anything else on your mind.
 
-- **The fantasy:** what the player does and feels. What makes it *theirs*?
-- **Inspirations:** 2–3 games, and what to **take** and **leave** from each.
-- **Core loop:** what the player does minute to minute, and what brings them back.
-- **Scope:** solo or team, platform, single- or multiplayer, the smallest version worth playing.
-- **Why this project:** what they want to learn or prove. This shapes the roadmap.
-- **Pillars:** two or three tie-breakers for when ideas conflict. Suggest them from what you've heard and let the user adjust.
-- **Name** (no spaces is easiest, e.g. `RTSCraft`) and **engine** (default **Unity**; Godot, Unreal or "none yet" are fine, see step 4). Ask these last, briefly. A working name is fine.
+If `$ARGUMENTS` already describes the game, skip straight to step 2.
 
-Wrap up once you have enough to fill the templates, usually 3–6 exchanges. If the user says "just set it up", stop and leave `TODO`s for the gaps. To wrap up, give a short summary (pitch, inspirations with take/leave, core loop, pillars, scope, name, engine) and the folder you'll create it in, then ask "anything to change before I set it up?" Build only after they confirm.
+Whatever comes back is usually dictated and rambling. Distil it; don't transcribe it. **Don't ask follow-up questions.** Anything missing becomes a `TODO` in the docs. If there's no name, use a short placeholder and say so.
 
-## 2. Check the folder
+## 2. Pick the folder
 
-Look at what's already here.
-
-- If the current directory already holds other projects (e.g. a `GameDev/` folder full of games), create the project in a new subfolder `<Name>/` and say so in the summary.
+- If the current directory already holds other projects (e.g. a `GameDev/` folder of games), create the project in a new subfolder `<Name>/` (no spaces, e.g. `RTSCraft`).
+- If it's empty, or clearly the user's folder for this game, use it directly.
 - **Never overwrite an existing file.** Skip it and mention it.
 
-## 3. Docs
+## 3. Write the docs
 
-Copy each file from [templates/](templates/) to the same relative path in the project, filling in the placeholders from what the user said. Leave clear `TODO`s where something is unknown:
+Copy each file from [templates/](templates/) to the same relative path in the project, filling in the placeholders from what the user said. Suggest 2–3 pillars from what you heard. Leave clear `TODO`s where something is unknown:
 
 - `README.md`, `CLAUDE.md`
 - `docs/vision.md`, `docs/roadmap.md`, `docs/decisions.md`
 - `journal/.gitkeep`
+- `src/README.md` (empty placeholder for the code or engine project)
 
-Where the pitch makes it relevant, add a short doc under `docs/design/` per major system (what reference games do, options, a recommendation, open questions). Research the reference games; don't rely on memory.
+Where the description makes it relevant, add a short doc under `docs/design/` per major system (what the reference games do, options, a recommendation, open questions). Research the reference games; don't rely on memory.
 
-## 4. Engine folder
+## 4. Wrap up
 
-Layout: docs at the repo root, the engine project in its own subfolder `<Name>-<Engine>/` (e.g. `RTSCraft-Unity/`). Keeps the docs out of the engine's import path.
-
-**Unity:**
-1. Copy [templates/unity.gitignore](templates/unity.gitignore) to `.gitignore` at the repo root, replacing `{{UnityFolder}}` with the folder name. Merge if a `.gitignore` exists.
-2. Look for an installed editor: `C:\Program Files\Unity\Hub\Editor\<version>\Editor\Unity.exe` on Windows, `/Applications/Unity/Hub/Editor/<version>/Unity.app/Contents/MacOS/Unity` on macOS.
-   - **Found:** ask which version if there are several (prefer the newest LTS), then run `"<Unity.exe>" -batchmode -quit -createProject "<repo>/<Name>-Unity"`. This takes a minute or two. Then tell the user to open it via Unity Hub → **Add → Add project from disk**.
-   - **Not found:** don't create the folder (Unity Hub wants to create it itself). Tell the user: in Unity Hub, **New project** → pick a template (e.g. Universal 3D) → **Project name** `<Name>-Unity` → **Location** this repo's folder.
-
-**Other engines:** write `.gitignore` entries for that engine, and tell the user how to create the project into `<Name>-<Engine>/`. Don't generate engine files by hand.
-
-Don't write game code or pipelines. This skill only sets up the project (YAGNI).
-
-## 5. Wrap up
-
-- Reply with a short tree of what was created and the one next step (usually "create/open the Unity project").
+- Reply with a short tree of what was created and a few lines on the TODOs worth filling in next.
+- Say the code goes in `src/`, whenever they're ready (create the engine project there, or ask Claude to).
 - Offer to `git init` and push to a **private** GitHub repo. Only do it if the user says yes.

@@ -18,4 +18,4 @@
 | [docs/roadmap.md](docs/roadmap.md) | Milestones, each one playable |
 | [docs/decisions.md](docs/decisions.md) | Decision log and open questions |
 | [journal/](journal/) | Design ideas and dev lessons ("journal this…") |
-| `{{Name}}-{{Engine}}/` | The {{Engine}} project. Open it via Unity Hub → Add project from disk |
+| [src/](src/) | The code / engine project (engine not chosen yet) |

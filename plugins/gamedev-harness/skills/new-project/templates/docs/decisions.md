@@ -4,7 +4,7 @@
 
 | ID | Date | Decision | Why |
 |---|---|---|---|
-| D-001 | {{date}} | {{engine/language}} | {{}} |
+| D-001 | {{date}} | TODO: engine / language | TODO |
 
 ## Open questions (provisional answers in *italics*)
 
