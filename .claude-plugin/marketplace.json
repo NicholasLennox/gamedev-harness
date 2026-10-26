@@ -1,0 +1,14 @@
+{
+  "name": "nick-gamedev",
+  "description": "Personal game-dev harness: design journal, lessons learned, project scaffolding",
+  "owner": {
+    "name": "Nick"
+  },
+  "plugins": [
+    {
+      "name": "gamedev-harness",
+      "source": "./plugins/gamedev-harness",
+      "description": "Journal design ideas and dev lessons; scaffold new game projects"
+    }
+  ]
+}
