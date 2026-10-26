@@ -38,5 +38,5 @@ Edit → bump `version` in `plugins/gamedev-harness/.claude-plugin/plugin.json` 
 
 ## Maybe later
 
-- **Concept art → Blender → engine.** Likely its own plugin (it needs a Blender MCP server), pulled in as a dependency. Plugins can list others under `dependencies` in `plugin.json`, much like npm or NuGet packages, and installing one installs the rest ([docs](https://code.claude.com/docs/en/plugins/dependencies)).
-- **Notion sync for the journal.**
+- Concept art → Blender → engine, possibly as a [plugin dependency](https://code.claude.com/docs/en/plugins/dependencies).
+- Notion sync for the journal.
