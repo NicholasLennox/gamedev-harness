@@ -5,15 +5,15 @@ A personal Claude plugin for game projects. **You don't need slash commands: jus
 | Skill | Say something like… | Does |
 |---|---|---|
 | `journal` | "journal this: …", "log a lesson: …", or paste a video link | Turns an idea, video, or lesson learned into a note in `journal/` |
-| `new-project` | "I want to start a new game project…" | Interviews you about the game, then sets up docs (pillars, vision, roadmap, decisions), `journal/`, `CLAUDE.md`, and a Unity project folder |
+| `new-project` | "I want to start a new game project…" | Asks you to describe the game, then sets up docs (pillars, vision, roadmap, decisions), `journal/`, `CLAUDE.md`, and an empty `src/` folder |
 
-Claude picks the right skill from what you say. To force one, type `/gamedev-harness:new-project` (or `:journal`) and keep talking after it. Everything after the command is passed in. `new-project` with nothing after it just starts the interview.
+Claude picks the right skill from what you say. To force one, type `/gamedev-harness:new-project` (or `:journal`) and keep talking after it. Everything after the command is passed in. `new-project` with nothing after it just asks you to tell it about your game.
 
 ## How `new-project` goes
 
-1. **A chat about your game.** Claude asks a question or two at a time and follows wherever your answers go. Ramble as much as you like. Along the way it covers the fantasy, the games you're borrowing from (what to take, what to leave), the core loop, scope, what you want to learn, and a few pillars. Name and engine come last.
-2. **A summary to check.** Once it has enough, Claude plays the game back to you in a few lines and says which folder it'll use. Change whatever's off.
-3. **The setup.** Only after you say go does it write the docs and set up the engine folder. Say "just set it up" at any point to skip ahead. Anything not covered yet becomes a `TODO`.
+1. **You describe the game.** Claude asks once for a working name (a placeholder is fine) and whatever you want to say about it, including the games and mechanics that inspired it. Ramble as much as you like. You can also put the description straight after the command.
+2. **The setup.** Claude distils that into the docs and suggests a few pillars. It doesn't ask follow-up questions. Anything you didn't cover becomes a `TODO`.
+3. **No engine yet.** The code goes in `src/` later. Create the engine project there yourself, or ask Claude to in a later prompt.
 
 ## How plugins work (short version)
 
