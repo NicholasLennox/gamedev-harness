@@ -2,7 +2,7 @@
   "name": "gamedev-harness",
   "displayName": "Game Dev Harness",
   "description": "Journal design ideas and dev lessons; scaffold new game projects",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "Nicholas Lennox",
     "url": "https://github.com/NicholasLennox"

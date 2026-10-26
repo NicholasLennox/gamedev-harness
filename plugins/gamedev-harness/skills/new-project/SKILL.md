@@ -1,24 +1,40 @@
 ---
 name: new-project
-description: Start a new game project. Sets up design docs (README with pillars, vision, roadmap, decision log), a journal folder, CLAUDE.md, and the engine project folder (Unity by default). Use when the user wants to create, start, or set up a new game / game dev project, even if they describe it in a long spoken ramble.
+description: Start a new game project by interviewing the user about their game, then setting up design docs (README with pillars, vision, roadmap, decision log), a journal folder, CLAUDE.md, and the engine project folder (Unity by default). Use when the user wants to create, start, or set up a new game / game dev project, even if they describe it in a long spoken ramble.
 argument-hint: "[name and/or a spoken brain dump of the idea]"
 ---
 
 # New game project
 
-Set up a new game project in the **current directory** from: $ARGUMENTS
+Set up a new game project from: $ARGUMENTS
 
-The input is often dictated and rambling. Distil it; don't transcribe it.
+## 1. Interview first, build later
 
-## 1. Gather (ask only for what's missing, in one go)
+**Don't create any files until the interview is done.** Start by talking to the user about their game, like a curious design partner would. Their answers are usually dictated and rambling, so let them ramble. You'll distil it later.
 
-- **Name** (no spaces is easiest for folders, e.g. `RTSCraft`).
-- **Pitch** and **2–3 inspiration games**.
-- **Engine**: default **Unity**. Others (Godot, Unreal, none yet) are fine; see step 4.
+- If `$ARGUMENTS` is empty, open warmly and ask them to tell you about the game, any way they like.
+- If it already holds a brain dump, play back the gist in a line or two, then pick up the most interesting gap.
+- Ask **one or two open questions per turn** in plain text. Build on what they just said instead of working down a checklist. Don't use multiple-choice menus for creative questions.
+- Feel free to suggest things ("sounds like Hades meets Stardew. Is the farming the main thing or the break between runs?"), but the ideas stay theirs.
+
+Over the conversation, cover:
+
+- **The fantasy:** what the player does and feels. What makes it *theirs*?
+- **Inspirations:** 2–3 games, and what to **take** and **leave** from each.
+- **Core loop:** what the player does minute to minute, and what brings them back.
+- **Scope:** solo or team, platform, single- or multiplayer, the smallest version worth playing.
+- **Why this project:** what they want to learn or prove. This shapes the roadmap.
+- **Pillars:** two or three tie-breakers for when ideas conflict. Suggest them from what you've heard and let the user adjust.
+- **Name** (no spaces is easiest, e.g. `RTSCraft`) and **engine** (default **Unity**; Godot, Unreal or "none yet" are fine, see step 4). Ask these last, briefly. A working name is fine.
+
+Wrap up once you have enough to fill the templates, usually 3–6 exchanges. If the user says "just set it up", stop and leave `TODO`s for the gaps. To wrap up, give a short summary (pitch, inspirations with take/leave, core loop, pillars, scope, name, engine) and the folder you'll create it in, then ask "anything to change before I set it up?" Build only after they confirm.
 
 ## 2. Check the folder
 
-Look at what's already here. **Never overwrite an existing file.** Skip it and mention it.
+Look at what's already here.
+
+- If the current directory already holds other projects (e.g. a `GameDev/` folder full of games), create the project in a new subfolder `<Name>/` and say so in the summary.
+- **Never overwrite an existing file.** Skip it and mention it.
 
 ## 3. Docs
 
