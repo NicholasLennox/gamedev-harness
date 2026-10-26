@@ -4,8 +4,14 @@ Notable changes, newest first. Format: [Keep a Changelog](https://keepachangelog
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-26
+
 ### Added
 - `engine-setup` skill: records the engine choice, installs Unity's Claude Code plugin if missing, and creates the Unity project in `src/`.
+
+### Changed
+- README rewritten for anyone using the plugin: the workflow, what you get, how to install.
+- `engine-setup` prefers a Unity 6 LTS and documents how to drive the Editor from the CLI.
 
 ### Fixed
 - Issues filed by `feature` use full GitHub links, since relative links break in issue bodies.

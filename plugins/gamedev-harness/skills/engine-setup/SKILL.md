@@ -25,15 +25,22 @@ Add or fill the engine row in `docs/decisions.md` (e.g. `D-001 | Unity + C# | <w
    claude plugin install unity@unity-agent-plugin
    ```
    If `claude` isn't on PATH (the VS Code extension), its binary is in the extension folder under `resources/native-binary/`. Inside VS Code, the user can also use `/plugins` → Marketplaces.
-3. **Editor:** pick the installed Unity 6 version (`unity editors -i`). If none, ask the user to install one. Installing accepts Unity's EULA, so that's their call.
+3. **Editor:** pick the installed Unity 6 version (`unity editors -i`), preferring an LTS. If none, ask the user to install the latest Unity 6 LTS from Unity Hub. Installing accepts Unity's EULA, so that's their call.
 4. **Create the project** in `src/<Name>/` (URP, with the Pipeline package so Claude can drive the Editor):
    ```
    unity projects create <Name> --path src --editor-version <ver> --template com.unity.template.urp-blank --with-pipeline --no-cloud --open
    ```
-5. **Git:** add Unity ignores for `src/<Name>/` (`Library/`, `Temp/`, `Obj/`, `Build/`, `Builds/`, `Logs/`, `UserSettings/`, generated `*.csproj`/`*.sln`, `.vs/`).
-6. **Check the connection:** `unity status` should show the Editor as `ready`. From here on, drive the Editor with `unity command` rather than hand-editing scene or prefab files (see `unity skill show`).
+5. **Git:** add Unity ignores for `src/<Name>/` (`Library/`, `Temp/`, `Obj/`, `Build/`, `Builds/`, `Logs/`, `UserSettings/`, generated `*.csproj`/`*.sln`/`*.slnx`, `.vs/`, `.vscode/`).
+6. **Check the connection:** `unity status --until-ready --project-path src/<Name>` should show the Editor as `ready`. From here on, drive the Editor with `unity command` rather than hand-editing scene or prefab files (see `unity skill show`).
 
-**Known failure:** creation fails with `Failed to decompress … template` and a missing `Editor/Data/Tools/7z.exe`. The Editor install is incomplete. Ask the user to reinstall it (Unity Hub, or `unity install <ver> --force`).
+**Driving the Editor, what works:**
+- Copy `.cs`, `.asmdef` and `.inputactions` files into `Assets/`, then `unity command eval --code 'UnityEditor.AssetDatabase.Refresh(); return 0;'` and `unity command recompile`.
+- Build scenes, prefabs and materials with a C# script run by `unity command eval_file --file <path>`. Use fully qualified type names, and keep the script outside the project.
+- Check errors with `unity command console.get --level warning`. Grouped command names take a dot (`console.get`, not `get`).
+- Smoke-test with `unity command start` and `stop`, `simulate_key --key W --action down|up`, `simulate_pointer --action move|down|up|click`, and `screenshot --view game`. If the user is in the Game view at the same time, their input mixes with yours.
+
+**Known failures:**
+- Creation fails with `Failed to decompress … template` and a missing `Editor/Data/Tools/7z.exe`: the Editor install is incomplete. Ask the user to reinstall it, or to install a Unity 6 LTS instead.
 
 ## 4. Other engines
 

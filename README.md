@@ -1,48 +1,61 @@
 # gamedev-harness
 
-A personal Claude plugin for game projects. **You don't need slash commands: just talk.**
+A Claude plugin for prototyping games, from a weekend game jam to a long-running side project.
 
-| Skill | Say something like… | Does |
-|---|---|---|
-| `journal` | "journal this: …", "log a lesson: …", or paste a video link | Turns an idea, video, or lesson learned into a note in `journal/` |
-| `design` | "let's talk about loot…", "maybe no junk items", or "yes" when a journal note offers to iterate | Updates that system's doc in `docs/design/`, logs settled decisions, and appends the reasoning to `docs/design-log.md` (an agent-facing history) |
-| `feature` | "make loot drops a feature", "create an issue for this" | Turns a design into a feature with a task checklist, filed as a GitHub issue or ready to paste into Jira |
-| `patch-notes` | "patch notes", "what changed since 0.4?", "cut 0.5" | Keeps `CHANGELOG.md` up to date and cuts versions |
-| `engine-setup` | "I'm going to use Unity" | Installs Unity's Claude Code plugin if missing, then creates the Unity project in `src/` |
-| `new-project` | "I want to start a new game project…" | Asks you to describe the game, then sets up docs (pillars, vision, roadmap, decisions), `journal/`, `CLAUDE.md`, and an empty `src/` folder |
+Talk through your idea (rambling is fine) and Claude sets up a light framework around it: a pitch and design pillars, a roadmap where every milestone is playable, a design journal, feature tickets, patch notes, and an engine project it can build in. **No slash commands needed: just talk.**
 
-Claude picks the right skill from what you say. To force one, type `/gamedev-harness:new-project` (or `:journal`) and keep talking after it. Everything after the command is passed in. `new-project` with nothing after it just asks you to tell it about your game.
+I built it for my own projects. It's free for anyone to use, fork or learn from.
 
-## How `new-project` goes
+## The workflow
 
-1. **You describe the game.** Claude asks once for a working name (a placeholder is fine) and whatever you want to say about it, including the games and mechanics that inspired it. Ramble as much as you like. You can also put the description straight after the command.
-2. **The setup.** Claude distils that into the docs and suggests a few pillars. It doesn't ask follow-up questions. Anything you didn't cover becomes a `TODO`.
-3. **No engine yet.** The code goes in `src/` later. Create the engine project there yourself, or ask Claude to in a later prompt.
+| Step | Say something like… | Skill | What happens |
+|---|---|---|---|
+| 1. Pitch it | "I want to make a game where…" | `new-project` | Turns your description into short docs: pitch, pillars, influences, core loop, roadmap, decisions |
+| 2. Pick an engine | "I'm going to use Unity" | `engine-setup` | Creates the engine project in `src/`, and installs Unity's Claude Code plugin so Claude can drive the Editor |
+| 3. Build a feature | "make the greybox hero a feature" | `feature` | Breaks a design into a feature with a task checklist, filed as a GitHub issue (or ready to paste into Jira) |
+| 4. Capture ideas | "journal this: …", or paste a video link | `journal` | Saves an idea or lesson as a tidy note in `journal/` |
+| 5. Rethink a system | "let's talk about loot, no junk items" | `design` | Updates that system's design doc and logs why it changed |
+| 6. Ship it | "patch notes", "cut 0.2" | `patch-notes` | Keeps `CHANGELOG.md` up to date and bumps the version |
 
-## How plugins work (short version)
+Claude picks the skill from what you say. To force one, type `/gamedev-harness:<skill>` followed by whatever you want to say.
 
-- A **plugin** is a folder with `.claude-plugin/plugin.json` plus `skills/<name>/SKILL.md` files. A skill is just instructions and templates for Claude.
-- A **marketplace** is a catalog: a repo with `.claude-plugin/marketplace.json` that lists plugins and where they live. Claude doesn't discover plugins on its own. You add the catalog once, then install plugins from it.
-- This repo is both: the catalog at the root, and the one plugin under `plugins/gamedev-harness/`.
+## What you get
+
+```
+MyGame/
+├── README.md        pitch and design pillars
+├── CLAUDE.md        how Claude should work in this project
+├── CHANGELOG.md     patch notes
+├── docs/
+│   ├── vision.md    influences, core loop, scope
+│   ├── roadmap.md   milestones, each one playable
+│   ├── decisions.md decision log and open questions
+│   ├── design-log.md  history of design changes (for Claude)
+│   └── design/      one short doc per game system
+├── journal/         ideas and lessons
+└── src/             the engine project
+```
+
+The docs stay short on purpose (about 1,000 words to start), so you spend your time making the game rather than writing about it.
 
 ## Install
 
-| Where you add it | Available in |
+| How | Works in |
 |---|---|
-| **claude.ai → Customize → Plugins → Add → Add marketplace → `NicholasLennox/gamedev-harness`** (recommended) | Your **account**: web, desktop and mobile chat, plus Claude Code when signed in |
-| `claude plugin marketplace add NicholasLennox/gamedev-harness` then `claude plugin install gamedev-harness@nicholaslennox` | Claude Code on **that one machine** only |
-| `claude --plugin-dir ./plugins/gamedev-harness` | One Claude Code session (for editing the plugin) |
-| Zip from [Releases](https://github.com/NicholasLennox/gamedev-harness/releases): upload it in claude.ai, or unzip and use `--plugin-dir` | Manual install, no marketplace |
+| **claude.ai → Customize → Plugins → Add marketplace → `NicholasLennox/gamedev-harness`** (recommended) | Your whole account: web, desktop and mobile, plus Claude Code when signed in |
+| `claude plugin marketplace add NicholasLennox/gamedev-harness`, then `claude plugin install gamedev-harness@nicholaslennox` | Claude Code on one machine |
+| Download the zip from [Releases](https://github.com/NicholasLennox/gamedev-harness/releases) | Manual: upload it in claude.ai, or unzip and run `claude --plugin-dir <folder>` |
 
-Chat on web and mobile can't write files, so there the journal skill gives you the note to save instead. Use `new-project` in Claude Code, since it creates folders.
+Use Claude Code for `new-project`, `engine-setup` and `feature`, since they create files and run tools. On web and mobile, `journal` hands you the note to save yourself.
 
-## Update
+## Developing the plugin
 
-Edit → bump `version` in `plugins/gamedev-harness/.claude-plugin/plugin.json` → push.
-
-A new minor version (0.5, 0.6…) gets a GitHub release with the zip automatically, with notes from [CHANGELOG.md](CHANGELOG.md). Patch bumps (0.4.1) don't.
+- A plugin is a folder with `.claude-plugin/plugin.json` and `skills/<name>/SKILL.md` files: plain instructions and templates for Claude. This repo is also the marketplace that lists it.
+- Try changes locally with `claude --plugin-dir ./plugins/gamedev-harness`.
+- To release: note the change in [CHANGELOG.md](CHANGELOG.md), bump `version` in `plugins/gamedev-harness/.claude-plugin/plugin.json`, and push. Each new minor version (0.6, 0.7…) publishes a GitHub release with the zip automatically.
 
 ## Maybe later
 
 - Concept art → Blender → engine, possibly as a [plugin dependency](https://code.claude.com/docs/en/plugins/dependencies).
+- Engines beyond Unity in `engine-setup`.
 - Notion sync for the journal.
