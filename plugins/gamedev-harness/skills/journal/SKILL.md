@@ -28,9 +28,11 @@ Check claims against sources where cheap (e.g. who a designer is, how a mechanic
 
 Use [templates/idea.md](templates/idea.md) or [templates/lesson.md](templates/lesson.md).
 
-- **With a filesystem** (Claude Code): save to `journal/YYYY-MM-DD-<slug>.md` in the current project. Create `journal/` if it's missing. If the note clearly affects a design doc (e.g. `docs/design/*.md`), add a one-line link under that doc's open questions.
+- **With a filesystem** (Claude Code): save to `journal/YYYY-MM-DD-<slug>.md` in the current project. Create `journal/` if it's missing. If the note clearly affects a design doc (e.g. `docs/design/*.md`), add a one-line link under that doc's open questions. Don't change the design itself; that's the `design` skill's job.
 - **Without one** (claude.ai chat, mobile): reply with the finished note in a markdown block so the user can save it later.
 
 ## 4. Reply
 
 One or two lines: what was captured and where it was saved. Don't repeat the whole note back.
+
+If the note bears on a design doc, end with a one-line offer, e.g. "Want to iterate the loot design with this?" A yes runs the `design` skill with this note as the source.

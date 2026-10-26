@@ -5,6 +5,7 @@ A personal Claude plugin for game projects. **You don't need slash commands: jus
 | Skill | Say something like… | Does |
 |---|---|---|
 | `journal` | "journal this: …", "log a lesson: …", or paste a video link | Turns an idea, video, or lesson learned into a note in `journal/` |
+| `design` | "let's talk about loot…", "maybe no junk items", or "yes" when a journal note offers to iterate | Updates that system's doc in `docs/design/`, logs settled decisions, and appends the reasoning to `docs/design-log.md` (an agent-facing history) |
 | `new-project` | "I want to start a new game project…" | Asks you to describe the game, then sets up docs (pillars, vision, roadmap, decisions), `journal/`, `CLAUDE.md`, and an empty `src/` folder |
 
 Claude picks the right skill from what you say. To force one, type `/gamedev-harness:new-project` (or `:journal`) and keep talking after it. Everything after the command is passed in. `new-project` with nothing after it just asks you to tell it about your game.

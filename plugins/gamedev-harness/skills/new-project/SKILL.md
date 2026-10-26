@@ -31,11 +31,13 @@ Whatever comes back is usually dictated and rambling. Distil it; don't transcrib
 Copy each file from [templates/](templates/) to the same relative path in the project, filling in the placeholders from what the user said. Suggest 2–3 pillars from what you heard. Leave clear `TODO`s where something is unknown:
 
 - `README.md`, `CLAUDE.md`
-- `docs/vision.md`, `docs/roadmap.md`, `docs/decisions.md`
+- `docs/vision.md`, `docs/roadmap.md`, `docs/decisions.md`, `docs/design-log.md`
 - `journal/.gitkeep`
 - `src/README.md` (empty placeholder for the code or engine project)
 
-Where the description makes it relevant, add a short doc under `docs/design/` per major system (what the reference games do, options, a recommendation, open questions). Research the reference games; don't rely on memory.
+For the one or two systems the user talked about most, add a doc under `docs/design/` (what the reference games do, options, a recommendation, open questions), each under ~250 words. Research the reference games; don't rely on memory. List any other systems as open questions in `decisions.md` instead.
+
+**Keep it short.** Aim for under ~1,000 words across the whole project. Use bullets over prose. If a section needs a paragraph to explain, it's probably a TODO.
 
 ## 4. Wrap up
 
