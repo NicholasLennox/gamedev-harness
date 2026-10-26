@@ -1,30 +1,35 @@
 # gamedev-harness
 
-A personal Claude plugin for game projects.
+A personal Claude plugin for game projects. **You don't need slash commands: just talk.**
 
-| Skill | Run it | Does |
+| Skill | Say something like… | Does |
 |---|---|---|
-| `journal` | `/gamedev-harness:journal <link or thought>`, or just say "journal this…" | Turns an idea, video link, or lesson learned into a note in `journal/` |
-| `new-project` | `/gamedev-harness:new-project <name> <pitch>` | Scaffolds README, pillars, vision, roadmap, decision log, `journal/`, `CLAUDE.md` |
+| `journal` | "journal this: …", "log a lesson: …", or paste a video link | Turns an idea, video, or lesson learned into a note in `journal/` |
+| `new-project` | "I want to start a new game project…" then ramble | Sets up docs (pillars, vision, roadmap, decisions), `journal/`, `CLAUDE.md`, and a Unity project folder |
 
-## How it works (short version)
+Claude picks the right skill from what you say. To force one, type `/gamedev-harness:new-project` (or `:journal`) and keep talking after it. Everything after the command is passed in.
 
-This folder is a **marketplace** (`.claude-plugin/marketplace.json`) holding one **plugin** (`plugins/gamedev-harness/`). Each skill is a `SKILL.md` with its templates next to it.
+## How plugins work (short version)
 
-## Use it
+- A **plugin** is a folder with `.claude-plugin/plugin.json` plus `skills/<name>/SKILL.md` files. A skill is just instructions and templates for Claude.
+- A **marketplace** is a catalog: a repo with `.claude-plugin/marketplace.json` that lists plugins and where they live. Claude doesn't discover plugins on its own. You add the catalog once, then install plugins from it.
+- This repo is both: the catalog at the root, and the one plugin under `plugins/gamedev-harness/`.
 
-- **Try locally:** `claude --plugin-dir ./plugins/gamedev-harness`
-- **Every device:** push this folder to GitHub, then on claude.ai go to **Customize → Plugins → Add → Add marketplace** and enter `<you>/gamedev-harness`. It syncs to web/desktop/mobile chat and to Claude Code on the same account.
-- **Claude Code only (alternative):** `claude plugin marketplace add <you>/gamedev-harness`, then `claude plugin install gamedev-harness@nick-gamedev`
+## Install
 
-## Test on a fresh project
+| Where you add it | Available in |
+|---|---|
+| **claude.ai → Customize → Plugins → Add → Add marketplace → `NicholasLennox/gamedev-harness`** (recommended) | Your **account**: web, desktop and mobile chat, plus Claude Code when signed in |
+| `claude plugin marketplace add NicholasLennox/gamedev-harness` then `claude plugin install gamedev-harness@nick-gamedev` | Claude Code on **that one machine** only |
+| `claude --plugin-dir ./plugins/gamedev-harness` | One Claude Code session (for editing the plugin) |
 
-1. Make an empty folder and open Claude Code in it.
-2. `/gamedev-harness:new-project TestGame "a tiny tower defense"`
-3. `/gamedev-harness:journal https://youtube.com/...`
+Chat on web and mobile can't write files, so there the journal skill gives you the note to save instead.
 
-## Later (only when needed)
+## Update
 
-- `blender` skill / bundled Blender MCP config (`.mcp.json`) once the art pipeline is proven in RTSCraft.
-- Notion MCP for the journal, if notes need to live outside the repo.
-- Change the plugin or add a skill → bump `version` in `plugin.json` → push.
+Edit → bump `version` in `plugins/gamedev-harness/.claude-plugin/plugin.json` → push. In claude.ai, use **Check for updates**, or turn on **Sync automatically**, on the marketplace.
+
+## Out of scope (on purpose)
+
+- Concept art → Blender models. That needs a separate Blender MCP server, so it lives per project. Revisit once it's proven in RTSCraft.
+- Notion sync for the journal.

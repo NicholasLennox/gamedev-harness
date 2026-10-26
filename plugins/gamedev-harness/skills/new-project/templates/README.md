@@ -10,11 +10,12 @@
 2. **{{Pillar}}.** {{Why.}}
 3. **Build only what we need now (YAGNI).** Tools and pipelines start manual and get automated once they've proven useful.
 
-## Docs map
+## Layout
 
-| Doc | What's in it |
+| Path | What's in it |
 |---|---|
 | [docs/vision.md](docs/vision.md) | Pitch, influences, core loop, scope |
 | [docs/roadmap.md](docs/roadmap.md) | Milestones, each one playable |
 | [docs/decisions.md](docs/decisions.md) | Decision log and open questions |
-| [journal/](journal/) | Design ideas and dev lessons (`/gamedev-harness:journal`) |
+| [journal/](journal/) | Design ideas and dev lessons ("journal this…") |
+| `{{Name}}-{{Engine}}/` | The {{Engine}} project. Open it via Unity Hub → Add project from disk |

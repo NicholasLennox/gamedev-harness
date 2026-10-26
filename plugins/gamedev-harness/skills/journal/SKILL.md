@@ -1,6 +1,6 @@
 ---
 name: journal
-description: Capture a game design idea or a development lesson as a tidy note. Use when the user says "journal this", "note this idea", "log a lesson", shares a design video/short/reel link, or describes something they learned (about game design, Unity, Blender, tooling, AI workflows) that they want to keep.
+description: Capture a game design idea or a development lesson as a tidy note. Use when the user says "journal this", "note this idea", "log a lesson", shares a design video/short/reel link, or describes something they learned (about game design, Unity, Blender, tooling, AI workflows) that they want to keep. Input is often a dictated ramble.
 argument-hint: "[link or rambling thought]"
 ---
 
