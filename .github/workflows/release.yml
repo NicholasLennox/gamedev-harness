@@ -1,0 +1,33 @@
+# Publishes a GitHub release with the plugin zipped, once per minor version (0.4, 0.5, ...).
+# Patch bumps (0.4.1) don't get a release.
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: [plugins/gamedev-harness/.claude-plugin/plugin.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Release if this minor version has none yet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(jq -r .version plugins/gamedev-harness/.claude-plugin/plugin.json)
+          minor=${version%.*}
+          existing=$(gh release list --limit 200 --json tagName -q ".[].tagName | select(startswith(\"v$minor.\"))")
+          if [ -n "$existing" ]; then
+            echo "Already released $minor as $existing. Skipping."
+            exit 0
+          fi
+          zip_name="gamedev-harness-$version.zip"
+          (cd plugins/gamedev-harness && zip -r "$GITHUB_WORKSPACE/$zip_name" .)
+          gh release create "v$version" "$zip_name" --title "gamedev-harness $version" --generate-notes

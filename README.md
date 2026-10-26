@@ -29,12 +29,15 @@ Claude picks the right skill from what you say. To force one, type `/gamedev-har
 | **claude.ai → Customize → Plugins → Add → Add marketplace → `NicholasLennox/gamedev-harness`** (recommended) | Your **account**: web, desktop and mobile chat, plus Claude Code when signed in |
 | `claude plugin marketplace add NicholasLennox/gamedev-harness` then `claude plugin install gamedev-harness@nicholaslennox` | Claude Code on **that one machine** only |
 | `claude --plugin-dir ./plugins/gamedev-harness` | One Claude Code session (for editing the plugin) |
+| Zip from [Releases](https://github.com/NicholasLennox/gamedev-harness/releases): upload it in claude.ai, or unzip and use `--plugin-dir` | Manual install, no marketplace |
 
 Chat on web and mobile can't write files, so there the journal skill gives you the note to save instead. Use `new-project` in Claude Code, since it creates folders.
 
 ## Update
 
 Edit → bump `version` in `plugins/gamedev-harness/.claude-plugin/plugin.json` → push.
+
+A new minor version (0.5, 0.6…) gets a GitHub release with the zip automatically. Patch bumps (0.4.1) don't.
 
 ## Maybe later
 
