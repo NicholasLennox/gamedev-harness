@@ -4,6 +4,12 @@ Notable changes, newest first. Format: [Keep a Changelog](https://keepachangelog
 
 ## [Unreleased]
 
+### Added
+- `engine-setup` skill: records the engine choice, installs Unity's Claude Code plugin if missing, and creates the Unity project in `src/`.
+
+### Fixed
+- Issues filed by `feature` use full GitHub links, since relative links break in issue bodies.
+
 ## [0.5.0] - 2026-10-26
 
 ### Added

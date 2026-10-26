@@ -1,4 +1,4 @@
-**System:** [{{system}}](docs/design/{{system}}.md) · **Milestone:** {{M#}}
+**System:** [{{system}}](https://github.com/{{owner}}/{{repo}}/blob/main/docs/design/{{system}}.md) · **Milestone:** {{M#}}
 
 ## Done when
 

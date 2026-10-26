@@ -8,6 +8,7 @@ A personal Claude plugin for game projects. **You don't need slash commands: jus
 | `design` | "let's talk about loot…", "maybe no junk items", or "yes" when a journal note offers to iterate | Updates that system's doc in `docs/design/`, logs settled decisions, and appends the reasoning to `docs/design-log.md` (an agent-facing history) |
 | `feature` | "make loot drops a feature", "create an issue for this" | Turns a design into a feature with a task checklist, filed as a GitHub issue or ready to paste into Jira |
 | `patch-notes` | "patch notes", "what changed since 0.4?", "cut 0.5" | Keeps `CHANGELOG.md` up to date and cuts versions |
+| `engine-setup` | "I'm going to use Unity" | Installs Unity's Claude Code plugin if missing, then creates the Unity project in `src/` |
 | `new-project` | "I want to start a new game project…" | Asks you to describe the game, then sets up docs (pillars, vision, roadmap, decisions), `journal/`, `CLAUDE.md`, and an empty `src/` folder |
 
 Claude picks the right skill from what you say. To force one, type `/gamedev-harness:new-project` (or `:journal`) and keep talking after it. Everything after the command is passed in. `new-project` with nothing after it just asks you to tell it about your game.

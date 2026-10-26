@@ -42,5 +42,5 @@ For the one or two systems the user talked about most, add a doc under `docs/des
 ## 4. Wrap up
 
 - Reply with a short tree of what was created and a few lines on the TODOs worth filling in next.
-- Say the code goes in `src/`, whenever they're ready (create the engine project there, or ask Claude to).
+- Say the code goes in `src/` whenever they're ready. Saying which engine ("I'm going to use Unity") runs the `engine-setup` skill.
 - Offer to `git init` and push to a **private** GitHub repo. Only do it if the user says yes.
