@@ -9,6 +9,7 @@ Notable changes, newest first. Format: [Keep a Changelog](https://keepachangelog
 
 ### Changed
 - `engine-setup`: notes on smoke-testing Play mode from the CLI (auto-tick, Game view input focus), and on handing playtesting to the user.
+- `engine-setup`: sets up VS Code as the Unity code editor (Unity extension, .NET SDK, default solution).
 
 ## [0.6.0] - 2026-10-26
 

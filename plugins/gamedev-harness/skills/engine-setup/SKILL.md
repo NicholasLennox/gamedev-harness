@@ -33,6 +33,12 @@ Add or fill the engine row in `docs/decisions.md` (e.g. `D-001 | Unity + C# | <w
 5. **Git:** add Unity ignores for `src/<Name>/` (`Library/`, `Temp/`, `Obj/`, `Build/`, `Builds/`, `Logs/`, `UserSettings/`, generated `*.csproj`/`*.sln`/`*.slnx`, `.vs/`, `.vscode/`).
 6. **Check the connection:** `unity status --until-ready --project-path src/<Name>` should show the Editor as `ready`. From here on, drive the Editor with `unity command` rather than hand-editing scene or prefab files (see `unity skill show`).
 
+7. **VS Code as the code editor** (if the user codes in VS Code):
+   - Set it as Unity's script editor: `unity command eval --code 'Unity.CodeEditor.CodeEditor.SetExternalScriptEditor(@"<path to Code.exe>"); Unity.CodeEditor.CodeEditor.CurrentEditor.SyncAll(); return 0;'`. This needs the *Visual Studio Editor* package (`com.unity.ide.visualstudio`) 2.0.20 or later; not the legacy *Visual Studio Code Editor* package.
+   - Install Microsoft's Unity extension: `code --install-extension visualstudiotoolsforunity.vstuc`. It brings C# and C# Dev Kit with it.
+   - C# Dev Kit needs a .NET SDK, not just a runtime (`dotnet --list-sdks`). If none is installed, ask the user to accept Dev Kit's install prompt, or install the current LTS SDK.
+   - If the open VS Code folder is above the Unity project, set `"dotnet.defaultSolution": "<path>/<Name>.slnx"` in that folder's `.vscode/settings.json`.
+
 **Driving the Editor, what works:**
 - Copy `.cs`, `.asmdef` and `.inputactions` files into `Assets/`, then `unity command eval --code 'UnityEditor.AssetDatabase.Refresh(); return 0;'` and `unity command recompile`.
 - Build scenes, prefabs and materials with a C# script run by `unity command eval_file --file <path>`. Use fully qualified type names, and keep the script outside the project.
