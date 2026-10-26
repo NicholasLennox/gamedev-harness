@@ -36,7 +36,7 @@ Chat on web and mobile can't write files, so there the journal skill gives you t
 
 Edit → bump `version` in `plugins/gamedev-harness/.claude-plugin/plugin.json` → push.
 
-## Out of scope (on purpose)
+## Maybe later
 
-- Concept art → Blender models. That needs a separate Blender MCP server, so it lives per project. Revisit once it's proven in RTSCraft.
-- Notion sync for the journal.
+- **Concept art → Blender → engine.** Likely its own plugin (it needs a Blender MCP server), pulled in as a dependency. Plugins can list others under `dependencies` in `plugin.json`, much like npm or NuGet packages, and installing one installs the rest ([docs](https://code.claude.com/docs/en/plugins/dependencies)).
+- **Notion sync for the journal.**
