@@ -44,6 +44,9 @@ Add or fill the engine row in `docs/decisions.md` (e.g. `D-001 | Unity + C# | <w
 - Build scenes, prefabs and materials with a C# script run by `unity command eval_file --file <path>`. Use fully qualified type names, and keep the script outside the project.
 - Check errors with `unity command console.get --level warning`. Grouped command names take a dot (`console.get`, not `get`).
 - Smoke-test with `unity command start` and `stop`, `simulate_key --key W --action down|up`, `simulate_pointer --action move|down|up|click`, and `screenshot --view game`. First run `unity command editor set_auto_tick` and `set_run_in_background --enable true`, or an unfocused Editor barely advances. Simulated keys only reach the game while the Game view has focus, so treat a smoke test as a check for errors and visuals, and hand the real playtest to the user. Restore `set_run_in_background --enable false` afterwards.
+- `unity command game_view --save_path <path>` only saves inside the project (it lands under `Assets/`): read it, then delete it with `AssetDatabase.DeleteAsset`. In edit mode, Screen Space Overlay UI only shows in a `game_view` capture during Play mode.
+- In an `eval_file` script, open the scene *before* creating objects: `EditorSceneManager.OpenScene` destroys anything unsaved.
+- TextMeshPro resources, without a dialog: `TMPro.TMP_PackageResourceImporter.ImportResources(true, false, false)`.
 
 **Known failures:**
 - Creation fails with `Failed to decompress … template` and a missing `Editor/Data/Tools/7z.exe`: the Editor install is incomplete. Ask the user to reinstall it, or to install a Unity 6 LTS instead.
