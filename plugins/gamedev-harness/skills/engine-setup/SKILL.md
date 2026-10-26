@@ -37,7 +37,7 @@ Add or fill the engine row in `docs/decisions.md` (e.g. `D-001 | Unity + C# | <w
 - Copy `.cs`, `.asmdef` and `.inputactions` files into `Assets/`, then `unity command eval --code 'UnityEditor.AssetDatabase.Refresh(); return 0;'` and `unity command recompile`.
 - Build scenes, prefabs and materials with a C# script run by `unity command eval_file --file <path>`. Use fully qualified type names, and keep the script outside the project.
 - Check errors with `unity command console.get --level warning`. Grouped command names take a dot (`console.get`, not `get`).
-- Smoke-test with `unity command start` and `stop`, `simulate_key --key W --action down|up`, `simulate_pointer --action move|down|up|click`, and `screenshot --view game`. If the user is in the Game view at the same time, their input mixes with yours.
+- Smoke-test with `unity command start` and `stop`, `simulate_key --key W --action down|up`, `simulate_pointer --action move|down|up|click`, and `screenshot --view game`. First run `unity command editor set_auto_tick` and `set_run_in_background --enable true`, or an unfocused Editor barely advances. Simulated keys only reach the game while the Game view has focus, so treat a smoke test as a check for errors and visuals, and hand the real playtest to the user. Restore `set_run_in_background --enable false` afterwards.
 
 **Known failures:**
 - Creation fails with `Failed to decompress … template` and a missing `Editor/Data/Tools/7z.exe`: the Editor install is incomplete. Ask the user to reinstall it, or to install a Unity 6 LTS instead.

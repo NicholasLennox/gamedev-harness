@@ -4,7 +4,7 @@ A Claude plugin for prototyping games, from a weekend game jam to a long-running
 
 Talk through your idea (rambling is fine) and Claude sets up a light framework around it: a pitch and design pillars, a roadmap where every milestone is playable, a design journal, feature tickets, patch notes, and an engine project it can build in. **No slash commands needed: just talk.**
 
-I built it for my own projects. It's free for anyone to use, fork or learn from.
+I built it for my own projects. It's free for anyone to use, fork or learn from ([MIT licence](LICENSE)).
 
 ## The workflow
 

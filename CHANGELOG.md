@@ -4,6 +4,12 @@ Notable changes, newest first. Format: [Keep a Changelog](https://keepachangelog
 
 ## [Unreleased]
 
+### Added
+- MIT licence.
+
+### Changed
+- `engine-setup`: notes on smoke-testing Play mode from the CLI (auto-tick, Game view input focus), and on handing playtesting to the user.
+
 ## [0.6.0] - 2026-10-26
 
 ### Added
